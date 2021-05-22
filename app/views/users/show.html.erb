@@ -16,7 +16,7 @@
             <th>introduction</th>
             <td><%= current_user.introduction %></td>
           </tr>
-          
+
         </table>
       <% else %>
         <table class="table my-3">
@@ -42,6 +42,11 @@
       <div class="form-group">
       <h6 class="my-2">Title</h6>
       <%= f.text_field :title ,class:"form-control" %>
+      </div>
+      <div class="form-group">
+      <h6 class="my-2">Tags</h6>
+      <p class="text-small">タグは半角スペースで区切ってください</p>
+      <%= f.text_field :tag_name, class:"form-control" %>
       </div>
       <div class="form-group">
       <h6 class="my-2">Opinion</h6>

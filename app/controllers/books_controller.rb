@@ -4,13 +4,15 @@ class BooksController < ApplicationController
     @books = Book.page(params[:page]).reverse_order
     @book = Book.new
     @user_id = current_user
+    @tag_list = Tag.all
   end
 
   def create
     @book = Book.new(book_params)
-    
+    tag_list = params[:book][:tag_name].split(nil)
     @book.user_id = current_user.id
     if @book.save
+      @book.save_tag(tag_list)
       redirect_to book_path(@book), notice:'You have created book successfully.'
     else
       @books = Book.page(params[:page]).reverse_order
@@ -24,6 +26,7 @@ class BooksController < ApplicationController
     @user = current_user
     @book = Book.new
     @post_comment = PostComment.new
+    @book_tags = @book_find.tags
   end
 
   def edit
