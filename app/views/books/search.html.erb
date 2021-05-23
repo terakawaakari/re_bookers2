@@ -3,7 +3,7 @@
     <div class="col-md-8 offset-md-1">
       <h1>Book search</h1>
       <div class="my-3">
-      <%= form_with url: books_search_path, method: :get, local: true do |f| %>
+      <%= form_with utl: books_path, method: :get, local: true do |f| %>
         <%= f.text_field :title %>
         <%= f.submit :search, class:"my-2 btn btn-sm btn-primary" %>
       <% end %>

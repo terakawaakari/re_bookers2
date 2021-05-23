@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get 'books/search' => 'books#search'
 
+  get 'books/tag_index' => 'books#tag_index'
+
   devise_for :users
 
   resources :users, :only => [:index, :show, :edit, :update]
@@ -18,10 +20,5 @@ Rails.application.routes.draw do
     resources :post_comments, :only => [:create, :destroy]
     resource :favorites, :only => [:create, :destroy]
   end
-
-  resources :tags do
-    get 'books', to: 'books#search'
-  end
-
 
 end

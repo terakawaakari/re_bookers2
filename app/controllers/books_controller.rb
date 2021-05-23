@@ -61,9 +61,17 @@ class BooksController < ApplicationController
     end
   end
 
+  def tag_index
+    @book = Book.new
+    @user_id = current_user
+    @tag = Tag.find(params[:tag_id])
+    @tag_books = Tag.find(params[:tag_id]).books.all
+    @books = Book.page(params[:page]).reverse_order
+  end
+
   private
   def book_params
-    params.require(:book).permit(:title,:body)
+    params.require(:book).permit(:title,:body, :tag_name)
   end
 
 end

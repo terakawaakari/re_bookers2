@@ -14,14 +14,8 @@
     <!--左側ここまで-->
     <!--右側-->
     <div class="col-md-8 offset-md-1">
-      <h2 class="mb-2">Tag list</h2>
-        <div>
-          <% @tag_list.each do |list| %>
-            <%= link_to "#" + list.tag_name + "　", books_tag_index_path(tag_id: list.id) %>
-          <% end %>
-        </div>
+      <h2><%= "Books " + "#" + "#{@tag.tag_name}" %></h2>
 
-      <h2 class="mt-3">Books</h2>
       <table class="table">
         <thead>
           <tr>
@@ -32,7 +26,7 @@
           </tr>
         </thead>
         <tbody>
-        <% @books.each do |book| %>
+        <% @tag_books.each do |book| %>
           <tr>
             <td>
               <%= link_to user_path(book.user_id) do %>
@@ -50,6 +44,9 @@
         <% end %>
         </tbody>
       </table>
+      <div class="text-right">
+        <%= link_to "Back", books_path, class:"btn btn-sm btn-secondary mt-3 mr-3" %>
+      </div>
      <%= paginate @books %>
     </div>
     <!--右側ここまで-->
