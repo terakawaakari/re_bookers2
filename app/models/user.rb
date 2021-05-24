@@ -14,11 +14,22 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  # def self.guest
-  #   find_or_create_by!(name: 'guest@example.com') do |user|
-  #     user.password = SecureRandom.urlsafe_base64
-  #     user.name = 'ゲストユーザー'
-  #   end
-  # end
+  has_many :relationships, dependent: :destroy
+  has_many :followings, through: :relationships, source: :follower
 
+  has_many :passive_relationships, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
+  has_many :followers, through: :passive_relationships, source: :user
+
+  def follow(other_user)
+    return if self == other_user
+    relationships.find_or_create_by!(follower: other_user)
+  end
+
+  def following?(user)
+    followings.include?(user)
+  end
+
+  def unfollow(relationship_id)
+    relationships.find(relationship_id).destroy!
+  end
 end

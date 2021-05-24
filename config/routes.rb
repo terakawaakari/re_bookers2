@@ -21,4 +21,6 @@ Rails.application.routes.draw do
     resource :favorites, :only => [:create, :destroy]
   end
 
+  resources :relationships, :only => [:create, :destroy]
+
 end

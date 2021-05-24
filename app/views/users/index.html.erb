@@ -9,11 +9,21 @@
           <th>image</th>
           <th>name</th>
           <th></th>
+          <th></th>
         </tr>
         <% @users.each do |user| %>
         <tr>
           <td><%= attachment_image_tag user, :profile_image, size: "30x30", format:'jpeg', fallback:"no_image.jpg" %></td>
           <td><%= user.name %></td>
+          <% if signed_in? && current_user != user %>
+            <% if current_user.following?(user) %>
+              <td><%= link_to 'Unfollow', relationship_path(current_user.relationships.find_by(follower: user)),method: :delete,class: "btn  btn-sm btn-info" %></td>
+            <% else %>
+              <td><%= link_to 'Follow', relationships_path(follower: user),class: "btn  btn-sm btn-info" %></td>
+            <% end %>
+          <% else %>
+            <td></td>
+          <% end %>
           <td><%= link_to "Show",user_path(user.id) %></td>
         </tr>
         <% end %>
