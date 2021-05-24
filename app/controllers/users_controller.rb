@@ -34,6 +34,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def show_following
+    @user  = User.find(params[:id])
+    @users = User.page(params[:page]).reverse_order
+  end
+
+  def show_followers
+    @user  = User.find(params[:id])
+    @users = User.page(params[:page]).reverse_order
+  end
+
   private
 
   def user_params

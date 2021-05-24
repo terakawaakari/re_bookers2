@@ -9,13 +9,27 @@
           <th>image</th>
           <th>name</th>
           <th></th>
+          <th></th>
+          <th></th>
         </tr>
         <% @users.each do |user| %>
         <tr>
-          <td><%= attachment_image_tag user, :profile_image, size: "30x30", format:'jpeg', fallback:"no_image.jpg" %></td>
+          <td>
+            <%= attachment_image_tag user, :profile_image, size: "30x30", format:'jpeg', fallback:"no_image.jpg" %>
+          </td>
           <td>
             <%= link_to user_path(user.id) do %>
               <%= user.name %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to show_following_user_path(user) do %>
+              <%= user.followings.count %> Following
+            <% end %>
+          </td>
+          <td>
+            <%= link_to show_following_user_path(user) do %>
+              <%= user.followers.count %> Followers
             <% end %>
           </td>
           <% if signed_in? && current_user != user %>

@@ -7,8 +7,16 @@
         <div class="ml-3">
           <%= attachment_image_tag @book_find.user, :profile_image, size: "50x50", format:'jpeg', fallback:"no_image.jpg" %>
         </div>
-        <div class="ml-5 mr-3"><%= @book_find.user.followings.count %><br>Follow</div>
-        <div><%= @book_find.user.followers.count %><br>Followers</div>
+        <div class="ml-5 mr-3">
+          <%= link_to show_following_user_path(@book_find.user) do %>
+            <%= @book_find.user.followings.count %><br>Following
+          <% end %>
+        </div>
+        <div>
+          <%= link_to show_followers_user_path(@book_find.user) do %>
+            <%= @book_find.user.followers.count %><br>Followers
+          <% end %>
+        </div>
       </div>
 
        <table class="table my-3">
