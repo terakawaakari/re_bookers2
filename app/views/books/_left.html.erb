@@ -1,8 +1,13 @@
     <!--左側-->
     <dev class="col-md-3">
       <h2>User info</h2>
-
-      <%= attachment_image_tag user_id, :profile_image, size: "50x50", format:'jpeg', fallback:"no_image.jpg" %>
+      <div class="d-flex">
+        <div class="ml-3">
+          <%= attachment_image_tag user_id, :profile_image, size: "50x50", format:'jpeg', fallback:"no_image.jpg" %>
+        </div>
+        <div class="ml-5 mr-3"><%= current_user.followings.count %><br>Follow</div>
+          <div><%= current_user.followers.count %><br>Followers</div>
+      </div>
 
         <table class="table my-3">
           <tr>

@@ -1,10 +1,15 @@
 <div class="container px-5 px-sm-0 pt-3">
   <div class="row">
     <!--左側-->
-    <dev class="col-md-3">
+    <div class="col-md-3">
       <h2>User info</h2>
-
-       <%= attachment_image_tag @book_find.user, :profile_image, size: "50x50", format:'jpeg', fallback:"no_image.jpg" %>
+      <div class="d-flex">
+        <div class="ml-3">
+          <%= attachment_image_tag @book_find.user, :profile_image, size: "50x50", format:'jpeg', fallback:"no_image.jpg" %>
+        </div>
+        <div class="ml-5 mr-3"><%= @book_find.user.followings.count %><br>Follow</div>
+        <div><%= @book_find.user.followers.count %><br>Followers</div>
+      </div>
 
        <table class="table my-3">
           <tr>
@@ -52,7 +57,7 @@
       <%= f.submit "Create Book",class:"btn btn-sm btn-success text-light rounded " %>
       </div>
       <% end %>
-    </dev>
+    </div>
     <!--左側ここまで-->
     <!--右側-->
     <div class="col-md-8 offset-md-1">
