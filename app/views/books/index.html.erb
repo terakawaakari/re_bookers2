@@ -29,6 +29,7 @@
             <th>Title</th>
             <th>Opinion</th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -45,7 +46,20 @@
               <% end %>
             </td>
             <td><%= book.body %></td>
-            <td><%= link_to "コメント#{book.post_comments.count}件", book_path(book.id), class:"small" %></td>
+            <% if book.favorited_by?(current_user) %>
+              <td class="small">
+                <%= link_to book_favorites_path(book), method: :delete do %>
+                  ♥<%= book.favorites.count %> いいね
+                <% end %>
+              </td>
+            <% else %>
+              <td class="small">
+                <%= link_to book_favorites_path(book), method: :post do %>
+                  ♡<%= book.favorites.count %> いいね
+                <% end %>
+              </td>
+            <% end %>
+            <td class="small"><%= link_to "コメント#{book.post_comments.count}件", book_path(book) %></td>
           </tr>
         <% end %>
         </tbody>
