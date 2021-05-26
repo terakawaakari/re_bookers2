@@ -27,4 +27,18 @@ class Book < ApplicationRecord
       self.tags << new_book_tag
     end
   end
+
+  def self.search(search,word)
+    if search == "forward_match"
+      @books = Book.where("title LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @books = Book.where("title LIKE?","%#{word}")
+    elsif search == "perfect_match"
+      @books = Book.where("#{word}")
+    elsif search == "partial_match"
+      @books = Book.where("title LIKE?","%#{word}%")
+    else
+      @books = Book.all
+    end
+  end
 end

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   get 'home/about' => 'homes#about'
 
-  get 'books/search' => 'books#search'
+  get 'search' => 'searches#search'
 
   get 'books/tag_index' => 'books#tag_index'
 

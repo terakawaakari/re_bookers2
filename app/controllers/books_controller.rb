@@ -53,14 +53,6 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
-  def search
-    if params[:title].present?
-      @books = Book.where('title LIKE ?', "%#{params[:title]}%")
-    else
-      @books = Book.none
-    end
-  end
-
   def tag_index
     @book = Book.new
     @user_id = current_user
@@ -71,7 +63,7 @@ class BooksController < ApplicationController
 
   private
   def book_params
-    params.require(:book).permit(:title, :body)
+    params.require(:book).permit(:title, :body, tag_name:[])
   end
 
 end
