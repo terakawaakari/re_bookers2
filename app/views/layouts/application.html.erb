@@ -15,16 +15,6 @@
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
           <a class="navbar-brand" href="/">Bookers</a>
-          <% if signed_in? %>
-            <div class="ml-3">
-              <%= form_with url: search_path, method: :get, local: true do |f| %>
-                <%= select_tag 'range' ,options_for_select([['User', '1'], ['Book', '2']]) %>
-                <%= select_tag 'search', options_for_select([["前方一致","forward_match"], ["後方一致","backward_match"], ["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
-                <%= f.text_field :word %>
-                <%= f.submit :search, class:"my-2 btn btn-sm btn-secondary" %>
-              <% end %>
-            </div>
-          <% end %>
           <button class="navbar-toggler bg-dark rounded ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -70,6 +60,16 @@
         <% else %>
           <%= content_tag :div, message, class: :"alert alert-success" %>
         <% end %>
+      <% end %>
+      <% if signed_in? %>
+        <div class="offset-md-8 mt-2">
+          <%= form_with url: search_path, method: :get, local: true do |f| %>
+            <%= f.text_field :word %>
+            <%= select_tag 'range' ,options_for_select([['User', '1'], ['Book', '2']]) %>
+            <%= select_tag 'search', options_for_select([["前方一致","forward_match"], ["後方一致","backward_match"], ["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
+            <%= f.submit :search, class:"my-2 btn btn-sm btn-secondary" %>
+          <% end %>
+        </div>
       <% end %>
       <%= yield %>
     </main>

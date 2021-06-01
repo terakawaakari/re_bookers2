@@ -39,14 +39,11 @@
               <% end %>
             </td>
             <td><%= book.body %></td>
-            <td><%= link_to "コメント#{book.post_comments.count}件", book_path(book.id), class:"small" %></td>
+            <td><%= link_to "コメント#{book.book_comments.count}件", book_path(book.id), class:"small" %></td>
           </tr>
         <% end %>
         </tbody>
       </table>
-      <div class="text-right">
-        <%= link_to "Back", books_path, class:"btn btn-sm btn-secondary mt-3 mr-3" %>
-      </div>
      <%= paginate @books %>
     </div>
     <!--右側ここまで-->
