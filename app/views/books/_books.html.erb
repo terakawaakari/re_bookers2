@@ -35,7 +35,7 @@
           <% end %>
         </td>
       <% end %>
-      <td class="small"><%= link_to "コメント#{book.post_comments.count}件", book_path(book) %></td>
+      <td class="small"><%= link_to "コメント#{book.book_comments.count}件", book_path(book) %></td>
     </tr>
   <% end %>
   </tbody>
