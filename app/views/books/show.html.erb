@@ -101,13 +101,13 @@
 
       <% if @book_find.favorited_by?(current_user) %>
         <p class="mt-5">
-          <%= link_to book_favorites_path(@book_find), method: :delete do %>
+          <%= link_to book_favorites_path(@book_find), method: :delete, class: 'favorite' do %>
             ♥<%= @book_find.favorites.count %> いいね
           <% end %>
         </p>
       <% else %>
         <p class="mt-5">
-          <%= link_to book_favorites_path(@book_find), method: :post do %>
+          <%= link_to book_favorites_path(@book_find), method: :post, class: 'favorite-destroy' do %>
             ♡<%= @book_find.favorites.count %> いいね
           <% end %>
         </p>
@@ -119,7 +119,10 @@
         <% @book_find.post_comments.each do |post_comment| %>
           <div class="border-bottom">
             <div><%= post_comment.comment %></div>
-            <div><%= post_comment.user.name %></div>
+            <div class="d-flex mt-2">
+              <div class="mr-2"><%= attachment_image_tag post_comment.user, :profile_image, size: "25x25", format:'jpeg', fallback:"no_image.jpg" %></div>
+              <div><%= post_comment.user.name %></div>
+            </div>
             <div class="mb-1 small"><%= post_comment.created_at.strftime('%Y/%m/%d') %></div>
             <% if post_comment.user == current_user %>
              <%= link_to "削除", book_post_comment_path(post_comment.book,post_comment), method: :delete, class:"small" %>
@@ -131,8 +134,8 @@
 
       <div class="new_comment">
         <%= form_with(model:[@book_find,@post_comment], local:true) do |f| %>
-          <%= f.text_area :comment,rows:'5' %>
-          <div><%= f.submit "Create Comment", class:"btn btn-sm btn-success" %></div>
+          <%= f.text_area :comment,rows:'5', class:"form-control" %>
+          <div><%= f.submit "Create Comment", class:"btn btn-sm btn-success mt-2" %></div>
         <% end %>
       </div>
 

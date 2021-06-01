@@ -24,13 +24,13 @@
       <td><%= book.body %></td>
       <% if book.favorited_by?(current_user) %>
         <td class="small">
-          <%= link_to book_favorites_path(book), method: :delete do %>
+          <%= link_to book_favorites_path(book), method: :delete, class: 'favorite' do %>
             ♥<%= book.favorites.count %> いいね
           <% end %>
         </td>
       <% else %>
         <td class="small">
-          <%= link_to book_favorites_path(book), method: :post do %>
+          <%= link_to book_favorites_path(book), method: :post, class: 'favorite-destroy' do %>
             ♡<%= book.favorites.count %> いいね
           <% end %>
         </td>

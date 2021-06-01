@@ -13,6 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+ .favorite {
+  color: #d0576b;
+  text-decoration: none;
+}
+
+.favorite-destroy {
+  color: #30a9de;
+  text-decoration: none;
+}
+
+
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome'
