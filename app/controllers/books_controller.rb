@@ -1,7 +1,13 @@
 class BooksController < ApplicationController
 
   def index
-    books = Book.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
+    to  = Time.current.at_end_of_day
+    from  = (to - 6.day).at_beginning_of_day
+    books = Book.includes(:favorited_users).sort {|a,b|
+      b.favorites.includes(:favorites).where(created_at: from...to).size <=>
+      a.favorites.includes(:favorites).where(created_at: from...to).size
+      }
+    # books = Book.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
     @books = Kaminari.paginate_array(books).page(params[:page]).per(10)
     @book = Book.new
     @user_id = current_user
