@@ -1,19 +1,21 @@
 class BookCommentsController < ApplicationController
 
   def create
-    book = Book.find(params[:book_id])
+    @book = Book.find(params[:book_id])
+    @book_comment = BookComment.new
     comment = current_user.book_comments.new(book_comment_params)
-    comment.book_id = book.id
-    if comment.save
-      redirect_back(fallback_location: root_path)
-    else
+    comment.book_id = @book.id
+    comment.save
+    unless comment.save
       redirect_to book_path(book), alert: 'フォームにコメントを入力してください'
     end
   end
 
   def destroy
-    BookComment.find_by(id:params[:id], book_id:params[:book_id]).destroy
-    redirect_back(fallback_location: root_path)
+    @book = Book.find(params[:book_id])
+    @book_comment = BookComment.new
+    comment = BookComment.find_by(id:params[:id], book_id:params[:book_id])
+    comment.destroy
   end
 
 

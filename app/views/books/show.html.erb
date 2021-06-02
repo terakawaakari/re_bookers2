@@ -74,7 +74,7 @@
        <tr>
           <td>
             <%= attachment_image_tag @book_find.user, :profile_image, size: "30x30", format:'jpeg', fallback:"no_image.jpg" %><br>
-            <%= link_to user_path(@book_find.user) do %>
+            <%= link_to user_path(@book_find.user), class: 'text-nowrap' do %>
               <%= @book_find.user.name %>
             <% end %>
           </td>
@@ -91,8 +91,8 @@
             <%= render "favorites/favorite", book: @book_find %>
           </td>
 
-          <td>
-            <%= render "comments/comments", book_find: @book_find, book_comment: @book_comment %>
+          <td class="small text-nowrap">
+            <%= @book_find.book_comments.count %><br>コメント
           </td>
 
           <% if @book_find.user == current_user %>
@@ -108,11 +108,12 @@
         </div>
       <% end %>
 
-
-
+      <div class="mb-3", id="comments_<%= @book_find.id %>">
+        <%= render 'book_comments/comments',book_comment: @book_comment, book_find: @book_find %>
+      </div>
 
       <div class="new_comment">
-        <%= form_with(model:[@book_find,@book_comment], local:true) do |f| %>
+        <%= form_with(model:[@book_find,@book_comment]) do |f| %>
           <%= f.text_area :comment,rows:'5', class:"form-control" %>
           <div><%= f.submit "Create Comment", class:"btn btn-sm btn-success mt-2" %></div>
         <% end %>

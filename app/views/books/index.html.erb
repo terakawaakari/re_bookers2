@@ -51,7 +51,7 @@
               <%= render partial: "favorites/favorite", locals: { book: book } %>
             </td>
 
-            <td class="small"><%= link_to "コメント#{book.book_comments.count}件", book_path(book) %></td>
+            <td class="small"><%= link_to "#{book.book_comments.count}コメント", book_path(book) %></td>
           </tr>
         <% end %>
         </tbody>
