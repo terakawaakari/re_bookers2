@@ -1,7 +1,8 @@
 class BooksController < ApplicationController
 
   def index
-    @books = Book.page(params[:page]).reverse_order
+    books = Book.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
+    @books = Kaminari.paginate_array(books).page(params[:page]).per(10)
     @book = Book.new
     @user_id = current_user
     @tag_list = Tag.all
