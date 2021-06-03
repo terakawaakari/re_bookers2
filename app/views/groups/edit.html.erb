@@ -15,10 +15,11 @@
       </div>
       <div class="form-group">
       <h6>グループ画像</h6>
+      <%= attachment_image_tag @group,:image,size:"50x50" %>
       <%= f.attachment_field :image,placeholder:"ファイルを選択" %>
       </div>
       <div class="my-2">
-      <%= f.submit "Create Group",class: "btn btn-sm btn-success" %>
+      <%= f.submit "Update Group",class: "btn btn-sm btn-secondary" %>
       </div>
       <% end %>
     </div>
