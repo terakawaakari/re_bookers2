@@ -1,0 +1,23 @@
+<%= render "layouts/errors", obj: @group %>
+
+<div class="container px-5 px-sm-0 pt-3">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+
+      <h2>Create Group</h2>
+
+      <%= form_with model: @group, local: true do |f| %>
+        <%= f.label "グループ名", :name %><br>
+        <%= f.text_field :name %><br>
+
+        <%= f.label "紹介文", :introduction %><br>
+        <%= f.text_area :introduction %><br>
+
+        <%= f.label "グループ画像", :image_id %><br>
+        <%= f.attachment_field :image, placeholder:"ファイルを選択" %><br>
+
+        <%= f.submit "Create Group", class:"btn btn-sm btn-info" %>
+      <% end %>
+    </div>
+  </div>
+</div>

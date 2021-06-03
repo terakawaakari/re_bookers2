@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @books = @user.books.page(params[:page]).reverse_order
     @user_id = current_user
     @book = Book.new
-    
+
     @today_books = @books.where(created_at: Time.zone.now.all_day)
     @yesterday_books = @books.where(created_at: 1.day.ago.all_day)
 
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     twoweek_ago = (lastweek_end - 6.day).at_beginning_of_day
 
     @week_books = @books.where(created_at: lastweek...today)
-    @lasteweek_books = @books.where(created_at: lastweek_end...twoweek_ago)
+    @lasteweek_books = @books.where(created_at: twoweek_ago...lastweek_end)
   end
 
   def edit

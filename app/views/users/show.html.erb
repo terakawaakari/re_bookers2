@@ -148,7 +148,7 @@
             <% else %>
               <td>
                 <% @day_ratio = @today_books.count / @yesterday_books.count.to_f %>
-                <%= (@day_ratio * 100).round %>
+                <%= (@day_ratio * 100).round %> %
               </td>
             <% end %>
           </tr>
@@ -172,7 +172,7 @@
             <% else %>
               <td>
                 <% @week_ratio = @week_books.count / @lasteweek_books.count.to_f %>
-                <%= (@week_ratio * 100).round %>
+                <%= (@week_ratio * 100).round %> %
               </td>
             <% end %>
           </tr>
