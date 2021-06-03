@@ -98,8 +98,8 @@
     <!--左側ここまで-->
     <!--右側-->
     <div class="col-md-8 offset-md-1">
-      <h2>Books</h2>
 
+      <h2>Books</h2>
       <table class="table">
         <thead>
         <tr>
@@ -128,6 +128,44 @@
         <% end %>
         </tbody>
       </table>
+
+      <div class="mt-5">
+      <h4>投稿数の前日比・前週比</h4>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>今日の投稿数</th>
+            <th>前日の投稿数</th>
+            <th>前日比</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @today_books.count %></td>
+            <td><%= @yesterday_books.count %></td>
+            <td><%= @day_ratio %> %</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>今週の投稿数</th>
+            <th>前週の投稿数</th>
+            <th>前週比</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @week_books.count %></td>
+            <td><%= @lasteweek_books.count %></td>
+            <td><%= @week_ratio %> %</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
     </div>
     <!--右側ここまで-->
   </div>
